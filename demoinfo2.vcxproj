@@ -116,6 +116,7 @@ protoc-2.4.1-win32\protoc.exe --proto_path=.\protobuf-2.4.1\src --proto_path=. -
   <ItemGroup>
     <ClInclude Include="demofile.h" />
     <ClInclude Include="demofiledump.h" />
+    <ClInclude Include="demoformat.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cstrike15_usermessages.proto">

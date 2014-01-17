@@ -161,22 +161,22 @@ bool CDemoFile::Open( const char *name )
 	if( fp )
 	{
 		size_t Length;
-		protodemoheader_t DotaDemoHeader;
+		demoheader_t CsgoDemoHeader;
 
 		fseek( fp, 0, SEEK_END );
 		Length = ftell( fp );
 		fseek( fp, 0, SEEK_SET );
 
-		if( Length < sizeof( DotaDemoHeader ) )
+		if( Length < sizeof( CsgoDemoHeader ) )
 		{
 			fprintf( stderr, "CDemoFile::Open: file too small. %s.\n", name );
 			return false;
 		}
 
-		fread( &DotaDemoHeader, 1, sizeof( DotaDemoHeader ), fp );
-		Length -= sizeof( DotaDemoHeader );
+		fread( &CsgoDemoHeader, 1, sizeof( CsgoDemoHeader ), fp );
+		Length -= sizeof( CsgoDemoHeader );
 
-		if( strcmp( DotaDemoHeader.demofilestamp, PROTODEMO_HEADER_ID ) )
+		if( strcmp( CsgoDemoHeader.demofilestamp, DEMO_HEADER_ID ) )
 		{
 			fprintf( stderr, "CDemoFile::Open: demofilestamp doesn't match. %s.\n", name );
 			return false;

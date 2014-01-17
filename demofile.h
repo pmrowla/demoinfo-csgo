@@ -32,6 +32,30 @@ typedef unsigned __int32	uint32;
 typedef unsigned __int64	uint64;
 typedef unsigned long		CRC32_t;
 
+#define DEMO_HEADER_ID		"HL2DEMO"
+#define DEMO_PROTOCOL		4
+
+#define NETWORK_PROTOCOL	0x3369	// observed protocol version from current GOTV demos
+
+#if !defined( MAX_OSPATH )
+#define	MAX_OSPATH		260			// max length of a filesystem pathname
+#endif
+
+struct demoheader_t
+{
+	char	demofilestamp[8];				// Should be HL2DEMO
+	int		demoprotocol;					// Should be DEMO_PROTOCOL
+	int		networkprotocol;				// Should be PROTOCOL_VERSION
+	char	servername[ MAX_OSPATH ];		// Name of server
+	char	clientname[ MAX_OSPATH ];		// Name of client who recorded the game
+	char	mapname[ MAX_OSPATH ];			// Name of map
+	char	gamedirectory[ MAX_OSPATH ];	// Name of game directory (com_gamedir)
+	float	playback_time;					// Time of track
+	int     playback_ticks;					// # of ticks in track
+	int     playback_frames;				// # of frames in track
+	int		signonlength;					// length of sigondata in bytes
+};
+
 #define PROTODEMO_HEADER_ID				"PBUFDEM"
 #define DEMOFILE_FULLPACKETS_VERSION	2
 
@@ -95,19 +119,14 @@ public:
 	virtual ::google::protobuf::Message& GetProtoMsg() 	{ return *this; }
 };
 
-typedef CDemoMessagePB< DEM_FileHeader, CDemoFileHeader >					CDemoFileHeader_t;
-typedef CDemoMessagePB< DEM_FileInfo, CDemoFileInfo >						CDemoFileInfo_t;
-typedef CDemoMessagePB< DEM_Stop, CDemoStop >								CDemoStop_t;
-typedef CDemoMessagePB< DEM_SyncTick, CDemoSyncTick >						CDemoSyncTick_t;
-typedef CDemoMessagePB< DEM_SendTables, CDemoSendTables >					CDemoSendTables_t;
-typedef CDemoMessagePB< DEM_ClassInfo, CDemoClassInfo >						CDemoClassInfo_t;
-typedef CDemoMessagePB< DEM_StringTables, CDemoStringTables >				CDemoStringTables_t;
-typedef CDemoMessagePB< DEM_ConsoleCmd, CDemoConsoleCmd >					CDemoConsoleCmd_t;
-typedef CDemoMessagePB< DEM_CustomData, CDemoCustomData >					CDemoCustomData_t;
-typedef CDemoMessagePB< DEM_CustomDataCallbacks, CDemoCustomDataCallbacks >	CDemoCustomDataCallbacks_t;
-typedef CDemoMessagePB< DEM_UserCmd, CDemoUserCmd >							CDemoUserCmd_t;
-typedef CDemoMessagePB< DEM_FullPacket, CDemoFullPacket >					CDemoFullPacket_t;
 typedef CDemoMessagePB< DEM_Packet, CDemoPacket >							CDemoPacket_t;
+typedef CDemoMessagePB< DEM_SyncTick, CDemoSyncTick >						CDemoSyncTick_t;
+typedef CDemoMessagePB< DEM_ConsoleCmd, CDemoConsoleCmd >					CDemoConsoleCmd_t;
+typedef CDemoMessagePB< DEM_UserCmd, CDemoUserCmd >							CDemoUserCmd_t;
+typedef CDemoMessagePB< DEM_DataTables, CDemoDataTables >					CDemoDataTables_t;
+typedef CDemoMessagePB< DEM_Stop, CDemoStop >								CDemoStop_t;
+typedef CDemoMessagePB< DEM_CustomData, CDemoCustomData >					CDemoCustomData_t;
+typedef CDemoMessagePB< DEM_StringTables, CDemoStringTables >				CDemoStringTables_t;
 
 //-----------------------------------------------------------------------------
 // Demo file 
