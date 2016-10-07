@@ -1,3 +1,7 @@
+# [DEPRECATED]
+This project is deprecated since Valve has released their own demoinfo tool: https://github.com/kaimallea/demoinfogo-linux
+
+
 Demoinfo2.exe is a tool that will parse Counter-Strike:Global Offensive demo files (ending in .dem) and dump out every message in the demo.  Using this tool, third parties can parse the demo for various game events to generate information and statistics.
 
 You can use demoinfo2.exe by itself and parse the demo.  We have also included the source code to the program itself to show how to parse and retrieve information directly.
